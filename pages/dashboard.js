@@ -8,11 +8,11 @@ export default function Dashboard() {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    console.log(token)
+  
     if (token) {
       try {
         jwt.verify(token, process.env.NEXT_PUBLIC_JWT_SECRET);
-        console.log("verifiaction done")
+
         setIsAuthenticated(true);
         router.push('/weather'); // Redirect to weather page if authenticated
       } catch (error) {

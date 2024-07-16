@@ -7,7 +7,6 @@ function MyApp({ Component, pageProps }) {
   const router = useRouter();
   useEffect(() => {
     const token = localStorage.getItem('token');
-    console.log(token)
     if (token) {
       try {
         jwt.verify(token, process.env.NEXT_PUBLIC_JWT_SECRET);
@@ -21,7 +20,7 @@ function MyApp({ Component, pageProps }) {
         router.push('/login'); // Redirect to login if no token is found
       }
     }
-  }, [router.pathname]);
+  }, [router]);//.pathname
 
   return <Component {...pageProps} />;
 }

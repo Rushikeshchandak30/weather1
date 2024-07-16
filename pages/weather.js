@@ -24,7 +24,7 @@ export default function Weather() {
       const data = response.data;
       setWeather(data);
     } catch (error) {
-      console.error('Error fetching the weather data', error);
+     
     } finally {
       setLoading(false);
       setCity('');
