@@ -24,7 +24,7 @@ export default function Weather() {
       const data = response.data;
       setWeather(data);
     } catch (error) {
-     
+      console.error(error);
     } finally {
       setLoading(false);
       setCity('');
@@ -47,8 +47,6 @@ export default function Weather() {
 
     return conditionToImage[condition] || '/assets/default.jpg';
   };
-
-
 
   if (loading) {
     return <Spinner />;
@@ -78,7 +76,7 @@ export default function Weather() {
             <div>
               <input
                 onChange={(e) => setCity(e.target.value)}
-                className='bg-transparent border-none text-white focus:outline-none text-2xl'
+                className='bg-transparent border-none text-white focus:outline-none text-xl sm:text-2xl'
                 type='text'
                 placeholder='Search city'
               />
@@ -92,11 +90,11 @@ export default function Weather() {
         {/* Weather */}
         {weather.main && (
           <div className='relative max-w-[500px] w-full bg-white/70 p-4 rounded-lg mt-4 mx-auto text-black z-10'>
-            <div className='flex justify-between items-center'>
-              <div>
-                <h1 className='text-3xl font-bold'>{weather.name}</h1>
-                <p className='text-xl'>{weather.weather[0].description}</p>
-                <p className='text-5xl font-bold'>{weather.main.temp}°F</p>
+            <div className='flex flex-col sm:flex-row justify-between items-center'>
+              <div className='mb-4 sm:mb-0'>
+                <h1 className='text-2xl sm:text-3xl font-bold'>{weather.name}</h1>
+                <p className='text-lg sm:text-xl'>{weather.weather[0].description}</p>
+                <p className='text-4xl sm:text-5xl font-bold'>{weather.main.temp}°F</p>
               </div>
               <div>
                 <Image
@@ -109,34 +107,32 @@ export default function Weather() {
             </div>
             <div className='grid grid-cols-2 gap-4 mt-4'>
               <div className='flex flex-col items-center'>
-                <p className='text-xl font-bold'>{weather.main.humidity}%</p>
-                <p>Humidity</p>
+                <p className='text-lg sm:text-xl font-bold'>{weather.main.humidity}%</p>
+                <p className='text-sm sm:text-base'>Humidity</p>
               </div>
               <div className='flex flex-col items-center'>
-                <p className='text-xl font-bold'>{weather.wind.speed} mph</p>
-                <p>Wind Speed</p>
+                <p className='text-lg sm:text-xl font-bold'>{weather.wind.speed} mph</p>
+                <p className='text-sm sm:text-base'>Wind Speed</p>
               </div>
               <div className='flex flex-col items-center'>
-                <p className='text-xl font-bold'>{weather.main.feels_like}°F</p>
-                <p>Feels Like</p>
+                <p className='text-lg sm:text-xl font-bold'>{weather.main.feels_like}°F</p>
+                <p className='text-sm sm:text-base'>Feels Like</p>
               </div>
               <div className='flex flex-col items-center'>
-                <p className='text-xl font-bold'>{weather.main.pressure} hPa</p>
-                <p>Pressure</p>
+                <p className='text-lg sm:text-xl font-bold'>{weather.main.pressure} hPa</p>
+                <p className='text-sm sm:text-base'>Pressure</p>
               </div>
               <div className='flex flex-col items-center'>
-                <p className='text-xl font-bold'>{weather.id} </p>
-                <p>Time Zone</p>
+                <p className='text-lg sm:text-xl font-bold'>{weather.id}</p>
+                <p className='text-sm sm:text-base'>Time Zone</p>
               </div>
               <div className='flex flex-col items-center'>
-                <p className='text-xl font-bold'>{weather.sys.country} </p>
-                <p>Country</p>
+                <p className='text-lg sm:text-xl font-bold'>{weather.sys.country}</p>
+                <p className='text-sm sm:text-base'>Country</p>
               </div>
             </div>
           </div>
         )}
-
-      
       </div>
     );
   }
