@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import axios from 'axios';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from './firebaseConfig';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -12,11 +13,12 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      const response = await axios.post('/api/auth/login', { email, password });
-      localStorage.setItem('token', response.data.token);
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+      localStorage.setItem('token', await user.getIdToken());
       router.push('/dashboard');
     } catch (error) {
-      setError(error.response.data.message);
+      setError(error.message);
     }
   };
 
