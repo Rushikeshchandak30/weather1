@@ -1,4 +1,3 @@
-// firebaseConfig.js
 
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, signInWithPopup} from "firebase/auth";
